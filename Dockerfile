@@ -12,6 +12,6 @@ FROM nginx:alpine
 
 WORKDIR /var/www/html/chatapp
 
-COPY build/* .
+COPY --from=build build .
 
 EXPOSE 80
