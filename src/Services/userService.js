@@ -12,7 +12,7 @@ export function useGetUsers() {
 
     const getUsers = () => {
         return fetch(
-            `${process.env.REACT_APP_API_URL}/api/users`,
+            `http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/users`,
             requestOptions
         )
             .then(handleResponse)

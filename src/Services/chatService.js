@@ -13,7 +13,7 @@ export function useGetGlobalMessages() {
 
     const getGlobalMessages = () => {
         return fetch(
-            `${process.env.REACT_APP_API_URL}/api/messages/global`,
+            `http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/messages/global`,
             requestOptions
         )
             .then(handleResponse)
@@ -40,7 +40,7 @@ export function useSendGlobalMessage() {
         };
 
         return fetch(
-            `${process.env.REACT_APP_API_URL}/api/messages/global`,
+            `http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/messages/global`,
             requestOptions
         )
             .then(handleResponse)
@@ -66,7 +66,7 @@ export function useGetConversations() {
 
     const getConversations = () => {
         return fetch(
-            `${process.env.REACT_APP_API_URL}/api/messages/conversations`,
+            `http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/messages/conversations`,
             requestOptions
         )
             .then(handleResponse)
@@ -120,7 +120,7 @@ export function useSendConversationMessage() {
         };
 
         return fetch(
-            `${process.env.REACT_APP_API_URL}/api/messages/`,
+            `http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/messages/`,
             requestOptions
         )
             .then(handleResponse)
