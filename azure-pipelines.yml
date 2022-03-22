@@ -1,4 +1,4 @@
-name: v$(major).$(minor).$(Rev:.r)
+name: v$(major).$(minor)$(Rev:.r)
 
 trigger:
 - development
