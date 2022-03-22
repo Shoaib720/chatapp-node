@@ -1,0 +1,27 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- development
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  displayName: Install Node 14.x
+  inputs:
+    versionSpec: '14.x'
+
+- task: Npm@1
+  displayName: Install dependencies
+  inputs:
+    command: 'install'
+
+- task: Bash@3
+  displayName: Copy .env.example to .env
+  inputs:
+    targetType: 'inline'
+    script: 'cp .env.example .env'
