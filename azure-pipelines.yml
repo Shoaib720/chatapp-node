@@ -1,13 +1,17 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+name: v$(major).$(minor).$(Rev:.r)
 
 trigger:
 - development
 
 pool:
   vmImage: ubuntu-latest
+
+variables:
+  - group: Backend Variables - DEV
+  - name: major
+    value: 1
+  - name: minor
+    value: 0
 
 steps:
 - task: NodeTool@0
@@ -25,3 +29,31 @@ steps:
   inputs:
     targetType: 'inline'
     script: 'cp .env.example .env'
+
+- task: replacetokens@5
+  displayName: Replace tokens from .env
+  inputs:
+    targetFiles: '.env'
+    encoding: 'auto'
+    tokenPattern: 'default'
+    writeBOM: true
+    actionOnMissing: 'warn'
+    keepToken: true
+    actionOnNoFiles: 'continue'
+    enableTransforms: false
+    enableRecursion: false
+    useLegacyPattern: false
+    enableTelemetry: true
+
+- task: Npm@1
+  displayName: Build the application.
+  inputs:
+    command: 'custom'
+    customCommand: 'run build'
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish Build Artifacts
+  inputs:
+    PathtoPublish: 'build'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
