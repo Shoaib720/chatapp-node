@@ -55,5 +55,5 @@ steps:
   displayName: Publish Build Artifacts
   inputs:
     PathtoPublish: 'build'
-    ArtifactName: 'drop'
+    ArtifactName: 'drop-v$(major).$(minor)$(Rev:.r)'
     publishLocation: 'Container'
