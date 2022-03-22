@@ -24,26 +24,26 @@ steps:
 #   inputs:
 #     command: 'install'
 
-# - task: Bash@3
-#   displayName: Copy .env.example to .env
-#   inputs:
-#     targetType: 'inline'
-#     script: 'cp .env.example .env'
+- task: Bash@3
+  displayName: Copy .env.example to .env
+  inputs:
+    targetType: 'inline'
+    script: 'cp .env.example .env'
 
-# - task: replacetokens@5
-#   displayName: Replace tokens from .env
-#   inputs:
-#     targetFiles: '.env'
-#     encoding: 'auto'
-#     tokenPattern: 'default'
-#     writeBOM: true
-#     actionOnMissing: 'warn'
-#     keepToken: true
-#     actionOnNoFiles: 'continue'
-#     enableTransforms: false
-#     enableRecursion: false
-#     useLegacyPattern: false
-#     enableTelemetry: true
+- task: replacetokens@5
+  displayName: Replace tokens from .env
+  inputs:
+    targetFiles: '.env'
+    encoding: 'auto'
+    tokenPattern: 'default'
+    writeBOM: true
+    actionOnMissing: 'warn'
+    keepToken: true
+    actionOnNoFiles: 'continue'
+    enableTransforms: false
+    enableRecursion: false
+    useLegacyPattern: false
+    enableTelemetry: true
 
 # - task: Npm@1
 #   displayName: Build the application.
@@ -54,6 +54,6 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: Publish Build Artifacts
   inputs:
-    PathtoPublish: 'build'
+    PathtoPublish: '.env'
     ArtifactName: drop-v$(major).$(minor)$(Rev:.r)
     publishLocation: 'Container'
