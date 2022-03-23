@@ -13,10 +13,11 @@ pipeline {
         stage('Create .env and replace tokens') {
             steps {
                 sh(label: 'copy to .env') 'cp .env.example .env'
-                sh(label: 'replace tokens') script: |
+                sh(label: 'replace tokens') '''
                     #!/bin/bash
                     sed -i 's+#{BACKEND_HOST}#+$(BACKEND_HOST)+g' .env
                     sed -i 's+#{BACKEND_PORT}#+$(BACKEND_PORT)+g' .env
+                '''
             }
         }
         stage('Build application') {
