@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Install dependencies') {
             steps {
-                sh 'npm install'
+                npm('install')
             }
         }
         stage('Create .env and replace tokens') {
