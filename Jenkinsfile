@@ -4,10 +4,13 @@ pipeline {
             image 'node:14-alpine'
         }
     }
+    environment {
+        HOME = '.'
+    }
     stages {
         stage('Install dependencies') {
             steps {
-                npm('install')
+                sh 'npm install'
             }
         }
         stage('Create .env and replace tokens') {
@@ -24,7 +27,7 @@ pipeline {
         }
         stage('Build application') {
             steps{
-                npm('run build')
+                sh 'npm run build'
             }
         }
     }
